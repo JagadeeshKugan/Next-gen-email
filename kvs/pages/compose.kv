@@ -1,0 +1,149 @@
+<Compose>:
+    name: "compose"
+    email: to_Email_input
+    subject: input
+    #create: created
+    MDScreen:
+        
+        MDBoxLayout:
+            md_bg_color: 0,0,0,1
+            orientation: "vertical"
+            MDTopAppBar:
+                type: "small"
+                pos_hint:{'top':1}
+                anchor_title: "center"                         
+                MDTopAppBarLeadingButtonContainer:
+
+                    MDActionTopAppBarButton:
+                        icon: "arrow-left"
+                        on_release: app.root.current = "mailscreen"
+
+                MDTopAppBarTitle:
+                    text: "Email"
+                    pos_hint: {"center_x": .5}
+                            
+            MDBoxLayout:
+                orientation:"horizontal"
+                md_bg_color: 236,231,225,0.2
+                height: "60dp"
+                
+                size_hint_y: None
+                spacing: 30
+                padding: 30
+                canvas.before:
+                    Color:
+                        rgba: 1, 1, 1, 0.2
+                    Line:
+                        width: 5
+                        
+                        rectangle: self.x, self.y, self.width, self.height
+                Label:
+                    text: "From :"
+                    #halign: "center"
+                    size_hint: 0.4, 0.1
+                    role: "small"
+                    halign: "center"
+                    theme_text_color: "Custom"
+                    text_color: "white"
+                    pos_hint:{"left":1}
+                    font_size: sp(15)
+                    spacing: 20
+                
+                Label:
+                    id: email_input
+                    text: "jd@gmail.com"
+                    halign: "center"
+                    size_hint: 1, 0.1
+                    role: "small"
+                    halign: "center"
+                    theme_text_color: "Custom"
+                    text_color: "white"
+                    font_size: sp(15)
+                    padding: [0,0,0,0]
+           
+            BoxLayout:
+                orientation: "vertical"
+                spacing:10
+                height: "30dp"
+                size_hint:(1,None)
+                padding: 20    
+                Label:
+                    text: "To : "
+                    pos_hint: {'x': 0.9, 'y': 0}
+                    
+                    font_size: sp(15)
+                    bold: True
+            MDTextField:
+                mode:"outlined"
+                width: sp(10)
+                theme_text_color: "Custom"
+                id: to_Email_input
+                        
+                normal_color: [0, 0, 0, 0.2]
+                active_color: [0, 0, 1, 0.2]
+                icon_type: "left"
+                icon_left: "lock"
+                spacing: 30
+                padding: [50,100, 50,50]
+                required: True
+                #size_hint: .5, None
+                text_color_normal: "blue"
+                pos_hint: {"center_x": .5}
+                hint_text: "Password"
+                MDTextFieldLeadingIcon:
+                    icon: "email"
+                    theme_icon_color: "Custom"
+                    icon_color_normal: "white"
+                MDTextFieldHintText:
+                    text: " To Email"
+                    mode: "persistent"
+            MDBoxLayout:
+                orientation:"vertical"
+                md_bg_color: 0,0,0,0.5
+                #size_hint_y: None
+                padding: [0,0,0,0]
+                spacing: 10
+                MDBoxLayout:
+                    orientation: "horizontal"
+                    Label:
+                        text: 'Content'
+                        font_size: 25
+                        color: 1,1,1,1
+                        pos_hint: { "center_x" : .5, "center_y": 0.5}
+                    Button:
+                        text: "choose image"
+                        size_hint: 1,0.6
+                        padding: [0,0,10,10]
+                        on_release: root.filechoose()
+                TextInput: 
+                    id: input
+                    hint_text:'Enter message'
+                    pos_hint: {'center_x': 0.5, 'center_y': 0.705} 
+                    size_hint: 0.95, None
+                    height: "190dp"
+                    multiLine: True
+                Label:
+                    id: file
+                    text:""
+                    size_hint:1,0.3   
+                    theme_text_color: "Custom"
+                    text_color: "blue"            
+                MDButton:
+                    style: "filled"
+                    theme_width: "Custom"
+                    height: "56dp"
+                    size_hint_x: .5
+                    pos_hint:{"top": 0.2, "center_x": .5, "center_y": .4}
+                    padding: 50
+                    on_release: root.sendemail()
+                    MDButtonText: 
+                        text: "Send" 
+                        
+                        pos_hint: {"center_x": .5, "center_y": .5}    
+                MDBoxLayout: 
+                    md_bg_color: 0,0,1,1
+                    height: dp(200)
+                    Button:
+                        text: 'Touch to speak'
+                        on_release: root.listenup()
+

@@ -1,0 +1,148 @@
+<MailScreen>:
+    name: "mailscreen"
+    md_bg_color: 1,0,0,0.9
+    MDScreen:
+        
+        MDBoxLayout:
+            md_bg_color: 0,0,0,0.4
+            orientation: "vertical"
+            MDTopAppBar:
+                type: "small"
+                pos_hint:{'top':1}
+                anchor_title: "center"                         
+                MDTopAppBarLeadingButtonContainer:
+
+                    MDActionTopAppBarButton:
+                        icon: "arrow-left"
+                        on_release: app.root.current = "message"
+
+                MDTopAppBarTitle:
+                    text: "Email"
+                    pos_hint: {"center_x": .5}
+            
+            MDBoxLayout:
+                orientation: "horizontal"
+                size_hint_y: None
+                height: "60dp"
+                spacing: 30
+                md_bg_color: 0,0,0,0.5
+
+                canvas.before:
+                    Color:
+                        rgba: 1, 1, 1, 0.2
+                    Line:
+                        width: 3
+                        
+                        rectangle: self.x, self.y, self.width, self.height
+                Label:
+                    text: "From :"   
+                Label:
+                    text: root.from_mail
+                    id: mailin   
+            MDBoxLayout:
+                orientation: "horizontal"  
+                size_hint_y: None
+                height: "20dp"   
+            MDBoxLayout:
+                orientation: "horizontal"
+                size_hint_y: None
+                height: "60dp"
+                spacing: 30
+                padding: [20,20,20,20]
+                md_bg_color: 0,0,0,0.5
+                canvas.before:
+                    Color:
+                        rgba: 1, 1, 1, 0.6
+                    Line:
+                        width: 3
+                        
+                        rectangle: self.x, self.y, self.width, self.height
+                
+                Label:
+                    text: "Subject :"   
+                Label:
+                    id: subject
+                    text: root._subject
+            BoxLayout:
+                orientation: "vertical"
+                size_hint_y:None
+                height:"20dp"
+            MDBoxLayout:
+                orientation: "vertical" 
+                md_bg_color: 1,1,1,0.4
+                padding: [0,20,0,20]
+                  
+                
+                    #radius: [10, 10, (1, -5), 10] if self.pos_hint == {'right': 1} else [10, 10, 10, (1, -5)]
+                        
+                canvas.before:
+                    Color:
+                        rgba: 1, 1, 1, 1
+                    Line:
+                        width: 2
+                                
+                        rectangle: self.x, self.y, self.width, self.height
+                MDBoxLayout:
+                    #md_bg_color: 0,0,0,1
+                    height:content.height+10
+                    
+
+                    pos_hint:{"center_x": .5}
+                    size_hint: None, None
+                    padding:[10,0,10,2]
+                    canvas.before:
+                        Color:
+                            rgba: (0,0,0,0.8)
+                        RoundedRectangle:
+                            pos: self.pos
+                            size: self.size
+                            radius: [(10, 10), (10, 10), (10, 10), (10, 10)]
+                    Label: 
+                        id:content
+                        text: "Content :"   
+                        size_hint: 1, None
+                        height: self.texture_size[1]
+                        spacing: 20 
+                        md_bg_color: 0,1,0,1
+            
+                ScrollView:
+                    do_scroll_y: True     
+                    padding: 20
+                    
+                        
+                    Label:
+                        id: msg_content        
+                        padding: 20
+                        
+                        text_size: self.width, None
+                        size_hint: 1, None
+                        height: self.texture_size[1]
+                        text: root.content
+                        #"Kivy is an open source software library for the rapid development of applications equipped with novel user interfaces, such as multi-touch apps."*4
+            MDBoxLayout:
+                orientation: "horizontal"
+                size_hint_y: None
+                height: "20dp"
+                Label:
+                    id: date
+                    text: root.date
+                    text_size: self.width, None
+                    size_hint: 1, None
+                    height: self.texture_size[1]
+                ScrollView:
+                    do_scroll_y: True     
+                    padding: 20
+                    Label:
+                        id: img
+                        text: root.img
+                        text_size: self.width, None
+                        size_hint: 1, None
+                        height: self.texture_size[1]
+            MDBoxLayout:
+                orientation: "vertical"
+                size_hint_y: None
+                height: "100dp"
+                md_bg_color: 1,1,1,0.4
+                Button:
+                    text: 'Touch to speak'
+                    on_release: root.checker(root.gett)

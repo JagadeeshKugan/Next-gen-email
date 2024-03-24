@@ -1,0 +1,67 @@
+<Message>:
+    MDScreen:
+        md_bg_color: 90/255,34/255,139/255,1
+        MDTopAppBar:
+            type: "small"
+            pos_hint:{'top':1}
+            anchor_title: "center" 
+                           
+            MDTopAppBarLeadingButtonContainer:
+
+                MDActionTopAppBarButton:
+                    icon: "logout"
+                    on_release: app.root.current = "login"
+
+            MDTopAppBarTitle:
+                text: "Email"
+                pos_hint: {"center_x": .5}
+        MDBoxLayout:
+            orientation: "vertical"
+            padding: [0,80,0,0]
+            MDBoxLayout:
+                    #adaptive_height: True
+                orientation: 'vertical'
+                md_bg_color:20/255, 232/255, 229/255, 0.8
+                spacing: 20
+                   
+                MDBoxLayout:
+                    orientation:"vertical"
+                    size_hint_y: None
+                    height: 100        
+                    MDLabel:
+                        text: "INBOX"
+                        id: day
+                        font_size: sp(20)
+                        padding: [20,0,0,0]
+                        pos_hint:{"center_x": .5, "center_y" : 0.5}
+                        text_color: 0,0,0,1
+                        bold: True
+
+                ScrollView:
+                    do_scroll_x: False
+                    do_scroll_y: True
+                    bar_width: 0
+                    size_hint: (1, .9)
+                    MDBoxLayout:
+                        orientation: 'vertical'
+                        md_bg_color: 1,1,1,0.7
+                        size_hint_y: None
+                        height: self.minimum_height
+                            #adaptive_height: True
+                        radius: [20, 20, 0, 0]
+                        padding: [0, 0, 0, 40]
+                        MDList:
+                            
+                            id: chatlist
+                            spacing: 20
+            MDBoxLayout:
+                orientation: "vertical"
+                size_hint_y: None
+                height: "100dp"
+                md_bg_color: 56/255, 216/255, 252/255, 1
+                Button:
+                    id: listener
+                    text: "Tap to Speak"
+                    color: 56/255, 216/255, 252/255, 1
+                    on_press: root.check()    
+                        

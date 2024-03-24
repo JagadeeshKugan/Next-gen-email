@@ -1,0 +1,68 @@
+Drawgesture(Widget):
+   points = []
+   
+   def __init__(self, *args, **kwargs):
+      super(Drawgesture, self).__init__()
+      self.gdb = GestureDatabase()
+
+   def on_touch_down(self, touch):
+      with self.canvas:
+         self.col = (random(), random(), random())
+         Color(self.col)
+         touch.ud["line"] = Line(points=(touch.x, touch.y), width=3)
+         Drawgesture.points.append((touch.x, touch.y))
+
+   def on_touch_move(self, touch):
+      with self.canvas:
+         Color(self.col)
+         touch.ud["line"].points += (touch.x, touch.y)
+         Drawgesture.points.append((touch.x, touch.y))
+         
+   def on_touch_up(self, touch):
+      print('touch up')
+
+class gestureApp(App):
+   def pressed(self, instance):
+      if instance.text == 'Add':
+         g = Gesture()
+         g.add_stroke(point_list=Drawgesture.points)
+         g.normalize()
+         print(self.d.gdb.gesture_to_str(g))
+         self.d.gdb.add_gesture(g)
+         print(str(g))
+         
+      if instance.text == 'Find':
+         g = Gesture()
+         g.add_stroke(point_list=Drawgesture.points)
+         g.normalize()
+         g1 = self.d.gdb.find(g, 0.65)
+         print(g1)
+
+      if instance.text == 'Clear':
+         self.d.canvas.clear()
+         
+   def build(self):
+      f = FloatLayout()
+      self.d = Drawgesture()
+      f.add_widget(self.d)
+      b1 = Button(
+         text='Add', pos_hint={'x': 0, 'y': 0},
+         size_hint=(None, None)
+      )
+      f.add_widget(b1)
+      b2 = Button(
+         text='Find', pos_hint={'x': .2, 'y': 0}, 
+         size_hint=(None, None)
+      )
+      f.add_widget(b2)
+      b3 = Button(
+         text='Clear', pos_hint={'x': .4, 'y': 0},
+         size_hint=(None, None)
+      )
+      f.add_widget(b3)
+      b1.bind(on_press=self.pressed)
+      b2.bind(on_press=self.pressed)
+      b3.bind(on_press=self.pressed)
+      return f
+      
+gestureApp().run()

@@ -1,0 +1,82 @@
+<Logincode>:
+    name:"loginwithcode"
+    code: code_in
+    MDScreen:
+        name: "login"
+        md_bg_color: 0,22,22,1
+        #NavBar:
+        
+        MDBoxLayout:
+            orientation:"vertical"
+
+            canvas:
+                Color:
+                    rgb: 11, 23, 22
+                Rectangle:
+                    size: self.size
+                    pos: self.pos
+            Image:
+
+                source: 'email.jpg'
+                allow_stretch:True
+                size: self.texture_size    
+                    
+            MDLabel:
+                text: "Login with Code"
+                halign: "center"
+                font_style: "Display"
+                role: "small"
+                halign: "center"
+                theme_text_color: "Custom"
+                text_color: "red"
+                padding: [0,0,0,90]
+            Label:
+                id: code
+                text:root.codein
+            MDStackLayout:
+                orientation: "lr-tb"
+                
+                
+                MDBoxLayout:
+                    orientation: "vertical"
+                    size_hint_y: .5
+                    spacing: 20
+                    size_hint_y: None
+                    height: "100dp"
+                    #md_bg_color:1,0,0,1
+                    padding: [20,0,20,0]
+
+                    
+                    TextInput: 
+                        id: code_in
+                        hint_text_color: 0,0,0,1
+                        hint_text:'Enter Your code'
+                        pos_hint: {'center_x': 0.5, 'center_y': 0.705} 
+                        size_hint: 0.95, 0.2
+                        background_color:1,1,1,0.2
+                        border: 5,5,5,5
+                        font_size: sp(20)
+
+                    MDButton:
+                        style: "elevated"
+                        
+                        theme_shadow_color: "Custom"
+                        shadow_color: "red"
+                        on_release: root.login()
+                        size_hint: .3, None
+                        pos_hint: {"center_x": .5, "top":.4}
+                        MDButtonText:
+                            text: "Login"
+                            text_color: "red" 
+            MDBoxLayout:
+                orientation:"vertical"
+                size_hint_y: None
+                height:"100dp"
+                
+                Button:
+                    id: tts
+                    text: 'Touch to speak'
+                    on_release: root.listener()
+                    
+            
+

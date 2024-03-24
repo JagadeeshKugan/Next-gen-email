@@ -1,0 +1,120 @@
+<Login>:
+    email: email
+    password: password_input
+    MDScreen:
+        name: "login"
+        md_bg_color: 0,22,22,1
+        #NavBar:
+        
+        MDBoxLayout:
+            orientation:"vertical"
+
+            canvas:
+                Color:
+                    rgb: 11, 23, 22
+                Rectangle:
+                    size: self.size
+                    pos: self.pos
+            Image:
+
+                source: 'email.jpg'
+                allow_stretch:True
+                size: self.texture_size    
+                    
+            MDLabel:
+                text: "Login"
+                halign: "center"
+                font_style: "Display"
+                role: "small"
+                halign: "center"
+                theme_text_color: "Custom"
+                text_color: "red"
+                padding: [0,0,0,90]
+            MDStackLayout:
+                orientation: "lr-tb"
+                
+            
+                MDBoxLayout:
+                    orientation: "vertical"
+                    size_hint_y: .5
+                    spacing: 20
+                    size_hint_y: None
+                    height: "100dp"
+                    #md_bg_color:1,0,0,1
+                    padding: [20,0,20,0]
+
+                    MDTextField:
+                        id: email
+                        text:""
+                        #
+                        mode:"outlined"
+                        normal_color: [0, 0, 0, 0.2]
+                        active_color: [0, 2, 0, 0.2]
+                        icon_type: "left"
+                        theme_text_color: "Custom"
+                        text_color_normal: "blue"
+                        padding: [50, 50]
+                        pos_hint: {"center_x": .5}
+                        hint_text: "Email"
+                        width: "2dp"
+                        required: True
+                        MDTextFieldLeadingIcon:
+                            icon: "email"
+                            theme_icon_color: "Custom"
+                            icon_color_normal: "blue"
+                        MDTextFieldHintText:
+                            text: "Enter Your Email"
+
+
+                    MDTextField:
+                        mode:"outlined"
+                        width: sp(10)
+                        
+                        id: password_input
+                        password: True
+                        theme_text_color: "Custom"
+                        text_color_normal: "blue"
+                        
+                        icon_type: "left"
+                        icon_left: "lock"
+                        spacing: 30
+                        padding: [50, 50]
+                        required: True
+                        size_hint: 1, None
+                        
+                        pos_hint: {"center_x": .5}
+                        
+                        MDTextFieldLeadingIcon:
+                            icon: "security"
+                            theme_icon_color: "Custom"
+                            icon_color_normal: "blue"
+                        MDTextFieldHintText:
+                            text: "Enter Your Password"
+                            theme_text_color: "Custom"
+                            text_color_normal: "black"
+                    
+                        
+
+                    MDButton:
+                        style: "elevated"
+                        
+                        theme_shadow_color: "Custom"
+                        shadow_color: "red"
+                        on_release: root.check()
+                        size_hint: .3, None
+                        pos_hint: {"center_x": .5, "top":.4}
+                        MDButtonText:
+                            text: "Login"
+                            text_color: "red" 
+            MDBoxLayout:
+                orientation:"vertical"
+                size_hint_y: None
+                height:"100dp"
+                
+                Button:
+                    id: tts
+                    text: 'Touch to speak'
+                    on_release: root.listener()
+                    
+            
+

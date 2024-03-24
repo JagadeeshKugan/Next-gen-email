@@ -1,0 +1,67 @@
+<ChatListItem>:
+    #ripple_behavior: True
+    md_bg_color: 1,1,1, 0.2
+    elevation: 1
+    size_hint_y: None
+    padding: [10, 0, 10, 0]
+    spacing: 10
+    height: dp(35)
+    on_press: app.create_chat(root.profile)
+   
+    
+    MDBoxLayout:
+        md_bg_color: 0,0,0, 0.2
+        orientation: "horizontal"
+        padding: [20, 0, 0, 10]
+        spacing: dp(2)
+        Label:
+            id: chatUsername
+            text: root.value
+            theme_text_color: 'Custom'
+            size: self.texture_size
+            size_hint_y: None
+            size_hint_x: None
+            font_size: 20
+            
+            color: 1,1,1,0.9
+            bold: True
+            md_bg_color:0,0,0,0.4
+        MDBoxLayout:
+            orientation:"vertical"
+            size_hint_x: None
+            width: sp(15)
+        Label:
+            id: chatUsername
+            text: root.friend_name
+            theme_text_color: 'Custom'
+            size: self.texture_size
+            size_hint_y: None
+            size_hint_x: None
+            font_size: 20
+            halign: "center"
+            color: 1,1,1,0.9
+            bold: True
+        MDBoxLayout:
+            orientation:"vertical"
+            size_hint_x: None
+            width: sp(15)
+        Label:
+            id: time
+            text: root.timestamp
+            size: self.texture_size
+            size_hint_y: None
+            size_hint_x: None
+            font_size: sp(9)
+   
+            #color: 9,206,255,0.8
+        #MDIcon:
+         #   #: set icons {'read': 'checkbox-multiple-marked-circle','delivered': 'checkbox-multiple-marked-circle-outline' ,'new': 'circle'}
+          #  id: chatCount
+            #theme_text_color: 'Custom'
+            #icon: icons[root.isRead] if root.isRead in icons.keys() else ''
+           # size_hint: None, None
+            #font_size: dp(12)
+            #size: dp(20), dp(20)
+            #pos_hint: {"center_x": .5, 'center_y': .5}
+            #text_color: 0,0,0,0.8
+   
